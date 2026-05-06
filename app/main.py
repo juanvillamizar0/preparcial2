@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from app.database import engine, Base
-import app.models
-Base.metadata.create_all(bind=engine)
+from app.routers import crews
 app = FastAPI()
+app.include_router(crews.router)
 @app.get("/")
 def root():
     return {"message": "One Piece API funcionando"}
